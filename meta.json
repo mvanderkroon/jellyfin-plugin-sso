@@ -1,0 +1,12 @@
+{
+  "category": "Authentication",
+  "changelog": "4.0.0.4 built from source for Jellyfin 12 (patches/jellyfin-12.patch)",
+  "description": "This plugin allows users to sign in through an SSO provider (such as Google, Facebook, or your own provider). This enables one-click signin.\nReview documentation at https://github.com/9p4/jellyfin-plugin-sso\n",
+  "guid": "505ce9d1-d916-42fa-86ca-673ef241d7df",
+  "imageUrl": "https://raw.githubusercontent.com/9p4/jellyfin-plugin-sso/main/img/logo.png",
+  "name": "SSO Authentication",
+  "overview": "Authenticate users against an SSO provider.",
+  "owner": "9p4",
+  "targetAbi": "12.0.0.0",
+  "version": "4.0.0.4"
+}

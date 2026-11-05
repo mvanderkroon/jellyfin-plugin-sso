@@ -73,7 +73,7 @@
       "FSharp.Core": {
         "type": "Transitive",
         "resolved": "10.1.402",
-        "contentHash": "K+I8ktYusPOEbnh2BrGQgvOl6qZWepmWiMuQDMeo4Q5pU4rXEqHFM6WBk/aSnfqsrZNg6sZQGY8qF5dQd7KHKw=="
+        "contentHash": "kfttzFL9uArPkhlhvoH99RZOOFpJnxOAZkGLqgfG+Wnc4FO2L+HnwradMgX1ubMjzhajuNzPTTcW1Yk8D1rGEg=="
       },
       "ICU4N": {
         "type": "Transitive",

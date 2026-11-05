@@ -5,7 +5,15 @@
     <RootNamespace>SSO_Auth</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <!-- Pin FSharp.Core instead of taking the SDK's bundled version: otherwise
+         every dotnet SDK patch release changes the reference and breaks
+         locked-mode restore (NU1004). -->
+    <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="10.1.402" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="Library.fs" />

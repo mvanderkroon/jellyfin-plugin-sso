@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -48,7 +49,9 @@ public class SSOController : ControllerBase
     private readonly IProviderManager _providerManager;
     private readonly IServerConfigurationManager _serverConfigurationManager;
     private readonly IHttpClientFactory _httpClientFactory;
-    private static readonly IDictionary<string, TimedAuthorizeState> StateManager = new Dictionary<string, TimedAuthorizeState>();
+    // Shared by every request: controllers are created per request, and the
+    // challenge, callback and cleanup paths all read and write this concurrently.
+    private static readonly IDictionary<string, TimedAuthorizeState> StateManager = new ConcurrentDictionary<string, TimedAuthorizeState>();
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SSOController"/> class.
@@ -417,10 +420,8 @@ public class SSOController : ControllerBase
                 return ReturnError(StatusCodes.Status400BadRequest, $"Error preparing login: {state.Error} - {state.ErrorDescription}");
             }
 
-            StateManager.Add(state.State, new TimedAuthorizeState(state, DateTime.Now));
-
             // Track whether this is a linking request or not.
-            StateManager[state.State].IsLinking = isLinking;
+            StateManager.Add(state.State, new TimedAuthorizeState(state, DateTime.Now) { IsLinking = isLinking });
             return Redirect(state.StartUrl);
         }
 
